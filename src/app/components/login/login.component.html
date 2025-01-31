@@ -1,16 +1,37 @@
+<h1>Login Page</h1>
+<button (click)="navigateToRollout()">Go to Rollout</button>
 <div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div>
-        <label for="username">Username</label>
-        <input type="text" id="username" [(ngModel)]="username" name="username" required />
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required />
-      </div>
-      <button type="Login">Login</button>
-    </form>
-    <p *ngIf="loginError" class="error">Invalid username or password!</p>
+  <h2>Login</h2>
+  <form (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input  id="username"  [(ngModel)]="username"   name="username" required class="form-control" placeholder="Enter your username" />
+    </div>
+
+    <div class="form-group">  <label for="password">Password:</label>
+      <input  id="password"   type="password" [(ngModel)]="password"  name="password"  required   class="form-control"   placeholder="Enter your password" />
+    </div>
+    
+
+    <button type="submit" class="btn btn-primary" [disabled]="!username || !password">
+      
+      Login
+    </button>
+    
+  </form>
+
+  <!-- Show the response after successful login -->
+  <div *ngIf="response" class="response-container">
+    <h3>Response:</h3>
+    <p><strong>JWT Token:</strong> {{ response.jwtToken }}</p>
+    <p><strong>Validate Time:</strong> {{ response.validateTime }}</p>
+    <p><strong>Status:</strong> {{ response.authenticationStatus }}</p>
+    <strong>Role:</strong> 
+<a (click)="navigateToRollout()">{{ response.role }}</a>
   </div>
-  
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>
+
+

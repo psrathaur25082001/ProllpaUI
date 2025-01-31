@@ -1,0 +1,16 @@
+<div class="container">
+    <h2>Upload Excel File</h2>
+  
+    <input type="file" (change)="onFileSelected($event)" accept=".xls,.xlsx" class="file-input" />
+    <button (click)="uploadFile()" [disabled]="!selectedFile" class="upload-btn">Upload</button>
+  
+    <h3>JSON Data:</h3>
+<div *ngIf="jsonResponse && jsonResponse.length > 0">
+  <form (ngSubmit)="submitChanges()">
+    <pre *ngIf="jsonResponse != null" class="pretty-json">{{ jsonResponse | json }}</pre>
+  </form>    
+</div>
+  
+    
+  </div>
+  

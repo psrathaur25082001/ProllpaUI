@@ -1,16 +1,52 @@
+<h1>Rollout DashBoard</h1>
 <div class="container">
-    <h2>Upload Excel File</h2>
-  
-    <input type="file" (change)="onFileSelected($event)" accept=".xls,.xlsx" class="file-input" />
-    <button (click)="uploadFile()" [disabled]="!selectedFile" class="upload-btn">Upload</button>
-  
-    <h3>JSON Data:</h3>
-<div *ngIf="jsonResponse && jsonResponse.length > 0">
-  <form (ngSubmit)="submitChanges()">
-    <pre *ngIf="jsonResponse != null" class="pretty-json">{{ jsonResponse | json }}</pre>
-  </form>    
-</div>
-  
-    
+  <h2>get All Excel Sheet Names</h2>
+  <input type="file" (change)="onFileSelected($event)" accept=".xls,.xlsx" class="file-input" />
+  <button (click)="getAllSheetsName()" [disabled]="!selectedFile" class="upload-btn">Get All Sheets Name</button>
+
+  <div *ngIf="sheetList && sheetList.length > 0">
+    <form (ngSubmit)="submitChanges()">
+      <ul>
+        <li *ngFor="let sheet of sheetList; let i = index">
+          {{ sheetList[i] }} <!-- Correct way to reference using index -->
+        </li>
+      </ul>
+      <!-- <button type="submit">Submit</button> -->
+    </form>
   </div>
+  
+  <!-- If no sheets are available -->
+  <div *ngIf="!sheetList || sheetList.length === 0">
+    <p>No sheets available</p>
+  </div>
+</div>
+<div class="container">
+  <h2>Excel to Json convertor</h2>
+  <input type="file" (change)="onFileSelected($event)" accept=".xls,.xlsx" class="file-input" />
+  
+  <label for="sheetName">Sheet Name (optional):</label>
+  <input type="text" id="sheetName" [(ngModel)]="sheetName" placeholder="Enter sheet name" class="file-input" />
+
+  <button (click)="getExcelToJson()" [disabled]="!selectedFile" class="upload-btn">View Json</button>
+  
+  <h3>JSON Data:</h3>
+  <div *ngIf="jsonResponse && jsonResponse.length > 0">
+    <form (ngSubmit)="submitChanges()">
+      <pre *ngIf="jsonResponse != null" class="pretty-json">{{ jsonResponse | json }}</pre>
+    </form>    
+  </div>
+</div>
+
+<div class="container">
+  <h2>get FAQ Json from Excel convertor</h2>
+  <input type="file" (change)="onFileSelected($event)" accept=".xls,.xlsx" class="file-input" />
+  <button (click)="getFAQJson()" [disabled]="!selectedFile" class="upload-btn">view FAQ Json</button>
+  <p *ngIf="downloadStatus">{{ downloadStatus }}</p>
+<!-- <div *ngIf="faqJson && faqJson.length > 0">
+<form (ngSubmit)="submitChanges()">
+  <pre *ngIf="faqJson != null" class="pretty-json">{{ faqJson | json }}</pre>
+</form>    
+</div> -->
+</div>
+
   

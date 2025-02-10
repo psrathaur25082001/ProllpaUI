@@ -37,6 +37,8 @@ export class LoginComponent {
       (data) => {
         this.response = data;
         this.jwtToken = data.jwtToken;
+        localStorage.setItem('jwtToken',this.jwtToken);
+        localStorage.getItem('jwtToken');
 
         if (this.jwtToken) {
           // Step 2: Fetch user details
@@ -122,6 +124,13 @@ export class LoginComponent {
 
   navigateToRollout() {
     this.router.navigate(['/rolloutDashboard']).then(success => {
+      console.log('Navigation successful:', success);
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
+  navigateToAdminDashboard() {
+    this.router.navigate(['/adminDashboard']).then(success => {
       console.log('Navigation successful:', success);
     }).catch(error => {
       console.error('Navigation error:', error);

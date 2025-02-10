@@ -1,5 +1,6 @@
 <h1>Login Page</h1>
-<button (click)="navigateToRollout()">Go to Rollout</button>
+<!-- <button (click)="navigateToRollout()">Go to Rollout</button>
+<button (click)="navigateToAdminDashboard()">Go to admin-dashboard</button> -->
 <div class="login-container">
   <h2>Login</h2>
   <form (ngSubmit)="login()">
@@ -23,10 +24,10 @@
   <!-- Show the response after successful login -->
   <div *ngIf="response" class="response-container">
     <h3>Response:</h3>
-    <p><strong>JWT Token:</strong> {{ response.jwtToken }}</p>
+    <!-- <p><strong>JWT Token:</strong> {{ response.jwtToken }}</p>
     <p><strong>Validate Time:</strong> {{ response.validateTime }}</p>
     <p><strong>Status:</strong> {{ response.authenticationStatus }}</p>
-    <strong>Role:</strong> 
+    <strong>Role:</strong>  -->
 <a (click)="navigateToRollout()">{{ response.role }}</a>
   </div>
   <div *ngIf="errorMessage" class="error-message">

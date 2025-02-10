@@ -43,7 +43,7 @@ export class AuthServiceService {
     }
   
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.jwtToken}`,
+     // 'Authorization': `Bearer ${this.jwtToken}`,
       'Content-Type': 'application/json'
     });
   
@@ -55,7 +55,7 @@ export class AuthServiceService {
     }
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.jwtToken}`,
+      // 'Authorization': `Bearer ${this.jwtToken}`,
       'Content-Type': 'application/json'
     });
     return this.http.get<any>(`${environment.apiUrl + ApiConstantService.getUserRoleByUserId}/${Number(userId)}`, {
@@ -65,7 +65,7 @@ export class AuthServiceService {
   getRoleList(): Observable<any> {
     if (this.jwtToken) {
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${this.jwtToken}`,
+        // 'Authorization': `Bearer ${this.jwtToken}`,
         'Content-Type': 'application/json'
       });
   
@@ -80,7 +80,7 @@ export class AuthServiceService {
   getRoleByRoleId(roleId: string ): Observable<any> {
     if (this.jwtToken) {
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${this.jwtToken}`,
+        // 'Authorization': `Bearer ${this.jwtToken}`,
         'Content-Type': 'application/json'
       });
   
@@ -92,5 +92,8 @@ export class AuthServiceService {
       return throwError('JWT token is missing. Please log in again.');
     }
   }
-  
+  getToken(): string | null {
+    return this.jwtToken;
+  }
+    
 }
